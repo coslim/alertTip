@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>可扩展弹出框</title>
+    <link rel="stylesheet" type="text/css" href="css/alertCen.css"/>
+    <script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/alertCen.js" type="text/javascript" charset="utf-8"></script>
+	
+	<style type="text/css"></style>
+        
+	<script type="text/javascript">
+	/**
+	 *		公有得得弹窗提示【可扩展】
+	 
+	     注意 插件的test.html 作为测试使用，存在部分注释，使用前请查看
+		 【主要是 关于按钮的 href 属性的移植】
+		 
+	 
+	 *
+	 *	在使用中注意按钮调用方法
+	 *	ok: parseInt("0001",2), 		//只有确定按钮
+	 *	cancel: parseInt("0010",2), 	//只有取消按钮
+	 *	okcancel: parseInt("0011",2)	//【确定】和【取消】
+	 *
+	 *	弹窗可展开后！ 点击取消按钮，关闭按钮可以关闭！ 也可以使用ESC键
+	 *	按 enter键 和点击确定按钮的是一样的！ 查看 alertCen.js 130行！  存在 bug 未修复成功
+	 *
+	 */
+	 
+	$(function(){
+		//提示弹窗  带i提示
+		$("#btn1").click(function(){
+			var txt= "这里是文本内容区域";
+			window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.info);
+		});
+		//提示弹窗  带？提示
+		$("#btn2").click(function(){
+			var txt= "测试文本测试测试文本测试文本";
+			window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.confirm);
+			//window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.confirm,{okLink:'http://www.baidu.com'});
+			$(".sgBtn.ok").attr('href','http://www.baidu.com');
+		});
+		//警告提示弹窗
+		$("#btn3").click(function(){
+			var txt= "测试文本测试文本测试文本测试文本";
+			window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.warning);
+		});
+		//错误提示弹窗	error
+		$("#btn4").click(function(){
+			var txt= "测试文本测试文本测试文本";
+			window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.error);
+		});
+		//成功提示弹窗 success
+		$("#btn5").click(function(){
+			var txt= "测试文本测试文本测试文本测试文本";
+			window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.success);
+		});
+		//带文本框输入的提示弹窗
+		$("#btn6").click(function(){
+			var txt= "请输入";
+			window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.input,{
+				onOk:function(v){
+					console.log(v);
+				}
+			});
+		});
+		
+		//自定义的提示弹窗【自定义标题、内容】	有【确定】和【取消】按钮
+			/**
+			 * 注意：
+			 * 下面的 custom 可以替换成
+			 *	info（蓝色i提示）、confirm（黄色？号）、warning（警告）、error（错误）、success（成功）、input（文本框弹窗）
+			 */
+		$("#btn7").click(function(){
+			var txt= "测试文本测试文本测试文本";
+			var option = {
+				title: "这里是标题",
+				btn: parseInt("0011",2),
+				onOk: function(){
+					console.log("确认");
+				}
+			}
+			window.lm.xcConfirm(txt, "custom", option);
+		});
+		
+		//默认提示弹窗【自定义标题、内容】  默认只有确定按钮
+			/**
+			 * 注意：
+			 * 下面的 custom 可以替换成
+			 *	info（蓝色i提示）、confirm（黄色？号）、warning（警告）、error（错误）、success（成功）、input（文本框弹窗）
+			 */
+		$("#btn8").click(function(){
+			window.lm.xcConfirm("这里是内容啦","custom",{title:"这里是框框标题"});
+		});
+	});
+    </script>
+	</head>
+	
+    <body>
+        
+		<div class="" style="height: 168px;">
+			<div class="sgBtn" id="btn1">弹窗1信息</div>
+			<div class="sgBtn" id="btn2">弹窗2提示(测试这个)</div>
+			<div class="sgBtn" id="btn3">弹窗3警告</div>
+			<div class="sgBtn" id="btn4">弹窗4错误</div>
+			<div class="sgBtn" id="btn5">弹窗5成功</div>
+			<div class="sgBtn" id="btn6">弹窗6输入框</div>
+			<div class="sgBtn" id="btn7">弹窗7自定义</div>
+			<div class="sgBtn" id="btn8">弹窗8默认</div>
+		</div>
+
+</body>
+</html>

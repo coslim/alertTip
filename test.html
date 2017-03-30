@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+	<link rel="stylesheet" type="text/css" href="css/alertCen.css"/>
+	<script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/alertCen.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+	<br /><br /><br /><br /><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input value="点击弹出页面" type="button" id="right"/>
+    <br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意： 按钮为 a 标签。href 属性可以 根据自己需要进行修改
+	
+    <br /><br /><br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input value="点击弹出1" type="button" id="all"/>
+    <br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意：弹出的 界面可以自己修改 
+    <br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;把 custom 可以替换成 info（蓝色i提示）、confirm（黄色？号）、warning（警告）、error（错误）、success（成功）、input（文本框弹窗） 就于可以修改为其他的提示了
+	
+    <script type="text/javascript">
+	$("#right").click(function(){
+		var txt= "这里是弹出页面！";
+		window.lm.xcConfirm(txt, window.lm.xcConfirm.typeEnum.confirm);
+        
+		//考虑到部分按钮可能需要用到连接！ 因此在做的时候使用了 a 标签  方便移植！ 可以使用下面的代码对 a 标签的 href 属性控制
+        //当然，有的在点击按钮事件中可能路径不一致，有 id name 或者其他的存在路径中！ 可以自己定义一个 var 的 dom 对象进行处理
+        	// ".sgBtn.ok" 确定按钮href属性控制
+			$(".sgBtn.ok").attr('href','http://www.baidu.com');
+            // ".sgBtn.cancel" 取消按钮href属性控制
+			$(".sgBtn.cancel").attr('href','http://www.qq.com');
+		});
+	
+	//自定义的提示弹窗【自定义标题、内容】	有【确定】和【取消】按钮
+	/**
+	 * 注意：
+	 * 下面的 custom 可以替换成
+	 *	info（蓝色i提示）、confirm（黄色？号）、warning（警告）、error（错误）、success（成功）、input（文本框弹窗）
+	 */
+	$("#all").click(function(){
+		var txt= "您好！当前用户已经下线，请重新登录！";
+		var option = {
+			title: "警告提示",
+			btn: parseInt("0011",2),
+			onOk: function(){
+				console.log("确认");
+			}
+		}
+		window.lm.xcConfirm(txt, "custom", option);
+	});
+	</script>
+</body>
+</html>
