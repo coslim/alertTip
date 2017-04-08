@@ -18,7 +18,7 @@
 	    var btnType = window.lm.xcConfirm.btnEnum;
 		var eventType = window.lm.xcConfirm.eventEnum;
 		var popType = {
-			//弹出基本信息
+			//弹出基本信息 inon是图片的cssscript定位【可以根据自己的需求修改】
 			info: {
 				title: "信息",
 				icon: "0 0",		//蓝色i
@@ -66,7 +66,7 @@
 			//弹窗属性
 			title: "", 		 //自定义的标题 传过来的值
 			icon: "", 		 //自定义图标	传过来的按钮值
-			btn: btnType.ok, //按钮,默认单按钮【只有确定按钮】
+			btn: btnType.ok, 	//按钮,默认单按钮【只有确定按钮】
 			//鼠标事件
 			onOk: $.noop,		//点击 确定按钮
 			onCancel: $.noop,	//点击 取消按钮
